@@ -1,0 +1,66 @@
+# Stock Analysis Dashboard Configuration
+
+app:
+  name: "Stock Analysis Dashboard"
+  debug: false
+  host: "127.0.0.1"
+  port: 5000
+  secret_key: "your-secret-key-here"
+
+data:
+  refresh_interval: 300  # seconds
+  cache_enabled: true
+  cache_ttl: 3600  # seconds
+  
+apis:
+  yfinance:
+    enabled: true
+  alpha_vantage:
+    enabled: true
+    api_key: ${ALPHA_VANTAGE_API_KEY}
+  finnhub:
+    enabled: true
+    api_key: ${FINNHUB_API_KEY}
+  newsapi:
+    enabled: true
+    api_key: ${NEWS_API_KEY}
+
+analysis:
+  fundamentals:
+    - pe_ratio
+    - pb_ratio
+    - roe
+    - roa
+    - debt_to_equity
+    - dividend_yield
+    - eps_growth
+    - free_cash_flow
+    - book_value
+    - peg_ratio
+  
+  technicals:
+    - rsi
+    - macd
+    - bollinger_bands
+    - moving_averages
+    - atr
+    - stochastic
+    - adx
+    - volume_analysis
+  
+  sentiment:
+    - news_sentiment
+    - social_sentiment
+
+screening:
+  min_market_cap: 1000000000
+  min_volume: 1000000
+  sectors: ["Technology", "Healthcare", "Finance", "Energy", "Consumer"]
+
+database:
+  connection_string: "postgresql://user:password@localhost/stock_analysis"
+  echo: false
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
